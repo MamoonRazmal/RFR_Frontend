@@ -1,0 +1,114 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display+SC:wght@700&family=Poppins&display=swap');
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.pnf{
+  display: flex;
+  min-height: 65vh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.pnf-title{
+  font-size: 100px;
+  font-weight: 700;
+}
+.pnf-heading{
+  font-weight: normal;
+}
+.pnf-btn{
+  color: black;
+  border:1px solid black;
+text-decoration:none;
+padding:10px;
+margin-top:10px;
+
+
+}
+/* font-family: 'Playfair Display SC', serif;
+font-family: 'Poppins', sans-serif; */
+.navbar{
+  font-family: 'Poppins', sans-serif;
+  font-size: 17px;
+  line-height: 26px;
+  text-transform: uppercase;
+  box-shadow: 0 8px 6px -6px gray;
+  -webkit-box-shadow:0 8px 6px -6px gray;
+  border-bottom: 0.3px solid gray !important;
+}
+.nav-link{
+  font-weight: 300 !important;
+}
+.active{
+  border-bottom: 2px solid black;
+}
+.navbar-brand{
+  font-weight:700 ;
+  font-family: 'roboto',sans-serif;
+  letter-spacing: 3;
+}
+.footer{
+  color: white;
+  padding: 25px;
+  background: black;
+  background:-webkit-linear-gradient(to right,#434343,#000000);
+  background: linear-gradient(to right,#434343,#000000);
+  
+}
+.footer a{
+  text-decoration: none;
+  color:white;
+  padding:10px;
+}
+.footer a:hover{
+  color :#ffefba;
+  border-bottom:1px solid #ffefba ;
+}
+
+
+/* register css */
+.register{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 70vh;
+
+}
+.form-container{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 70vh;
+  flex-direction: column;
+  background-color: #ffdee9;
+  background-image: linear-gradient(0deg,#ffdee9 0%,#b5fffc 100%);
+
+}
+.form-container form .title{
+  text-align: center;
+  margin-bottom: 15px;
+  font-weight: bold;
+  font-family: "Playfair Display",serif;
+}
+.form-container form{
+  box-shadow: rgba(0,0,0,0.35)0px 5px 15px;
+  padding: 20px;
+  background-color: #fff;
+}
+.form-container form input{
+  border: none;
+  border-bottom: 1px solid #000;
+  border-radius: 0;
+}
+.form-container form button:hover{
+  border:1px solid black;
+  background: black;
+  background:-webkit-linear-gradient(to right,#434343,#000000);
+  background: linear-gradient(to right,#434343,#000000);
+}
