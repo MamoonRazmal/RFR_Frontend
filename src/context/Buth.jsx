@@ -9,7 +9,7 @@ const AuthProvider=({children})=>{
     })
 
 //axios.defaults.headers.common['Authorization'] = auth?.token
-
+axios.defaults.headers.common["Authorization"] = auth?.token;
 
 
     useEffect(()=>{

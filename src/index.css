@@ -112,3 +112,8 @@ font-family: 'Poppins', sans-serif; */
   background:-webkit-linear-gradient(to right,#434343,#000000);
   background: linear-gradient(to right,#434343,#000000);
 }
+.product-link{
+  text-decoration: none !important;
+  color: black !important;
+
+}
