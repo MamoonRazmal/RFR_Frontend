@@ -1,11 +1,15 @@
 import Layout from "../components/layout/Layout";
 import { useAuth } from "../context/Buth";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { Checkbox, Radio } from "antd";
 import { Prices } from "../components/Prices";
+import { useCart } from "../context/Cart";
 const Home = () => {
+  const navigate = useNavigate();
+  const [cart, setCart] = useCart();
   const [auth, setAuth] = useAuth();
   const [products, setproducts] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -164,10 +168,19 @@ const Home = () => {
                       {p.description.substring(0, 30)}....
                     </p>
                     <p className="card-text">€{p.price}</p>
-                    <button className="btn btn-primary ms-1">
+                    <button
+                      className="btn btn-primary ms-1"
+                      onClick={() => navigate(`/product/${p.slug}`)}
+                    >
                       More Details
                     </button>
-                    <button className="btn btn-secondory ms-1">
+                    <button
+                      className="btn btn-secondory ms-1"
+                      onClick={() => {
+                        setCart([...cart, p]);
+                        toast.success("Item added to cart");
+                      }}
+                    >
                       Add To Cart
                     </button>
                   </div>
