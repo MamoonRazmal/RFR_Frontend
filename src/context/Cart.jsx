@@ -1,10 +1,13 @@
-import { useState, useContext, createContext } from "react";
+import { useState, useContext, createContext, useEffect } from "react";
 
 const CartContext = createContext();
 
 const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
-
+  useEffect(() => {
+    let stillhavingitems = localStorage.getItem("cart");
+    if (stillhavingitems) setCart(JSON.parse(stillhavingitems));
+  }, []);
   //axios.defaults.headers.common['Authorization'] = auth?.token
 
   return (
