@@ -48,7 +48,7 @@ const CartPage = () => {
   const getToken = async () => {
     try {
       const { data } = await axios.get(
-        "http://localhost:3000/api/v1/product/braintree/token"
+        "https://rfr-backend.onrender.com/api/v1/product/braintree/token"
       );
       //console.log("this data inside token sss", data.clientToken);
       setClientToken(data?.clientToken);
@@ -66,7 +66,7 @@ const CartPage = () => {
       setLoading(true);
       const { nonce } = await instant.requestPaymentMethod();
       const { data } = await axios.post(
-        "http://localhost:3000/api/v1/product/braintree/payment",
+        "https://rfr-backend.onrender.com/api/v1/product/braintree/payment",
         {
           nonce,
           cart,
@@ -105,7 +105,7 @@ const CartPage = () => {
             <div className="row mb-2 p-3 card flex-row" key={f._id}>
               <div className="col-md-4">
                 <img
-                  src={`http://localhost:3000/api/v1/product/product-photo/${f._id}`}
+                  src={`https://rfr-backend.onrender.com/api/v1/product/product-photo/${f._id}`}
                   className="card-img-top"
                   alt={f.name}
                   width="100px"

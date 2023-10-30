@@ -20,7 +20,7 @@ const AdminOrders = () => {
   const getOrders = async () => {
     try {
       const { data } = await axios.get(
-        "http://localhost:3000/api/v1/auth/all-orders"
+        "https://rfr-backend.onrender.com/api/v1/auth/all-orders"
       );
       setOrders(data);
     } catch (error) {
@@ -33,7 +33,7 @@ const AdminOrders = () => {
   const handleChange = async (orderId, value) => {
     try {
       const { data } = await axios.put(
-        `http://localhost:3000/api/v1/auth/order-status/${orderId}`,
+        `https://rfr-backend.onrender.com/api/v1/auth/order-status/${orderId}`,
         {
           status: value,
         }
@@ -72,7 +72,7 @@ const AdminOrders = () => {
                       <td>
                         <Select
                           bordered={false}
-                          onChange={(value) => handleChange(o._id, value)}
+                          onChange={(value) => handleChange(o?._id, value)}
                           defaultValue={o?.status}
                         >
                           {status.map((s, i) => (
@@ -95,7 +95,7 @@ const AdminOrders = () => {
                     <div className="row mb-2 p-3 card flex-row" key={f._id}>
                       <div className="col-md-4">
                         <img
-                          src={`http://localhost:3000/api/v1/product/product-photo/${f._id}`}
+                          src={`https://rfr-backend.onrender.com/api/v1/product/product-photo/${f._id}`}
                           className="card-img-top"
                           alt={f.name}
                           width="100px"

@@ -10,7 +10,7 @@ const CategoryProduct = () => {
   const [categories, setCategories] = useState([]);
   const getProduct = async () => {
     const { data } = await axios.get(
-      `http://localhost:3000/api/v1/product/product-category/${params.slug}`
+      `https://rfr-backend.onrender.com/api/v1/product/product-category/${params.slug}`
     );
     setProducts(data?.products);
     setCategories(data?.category);
@@ -19,6 +19,7 @@ const CategoryProduct = () => {
   useEffect(() => {
     if (params?.slug) getProduct();
   }, [params.slug]);
+  //console.log("value of products and  cat", products[0]._id);
 
   return (
     <Layout>
@@ -26,12 +27,12 @@ const CategoryProduct = () => {
         <h4 className="text-center">Category -{categories?.name}</h4>
         <h6 className="text-center">{products?.length} result found</h6>
         <div className="row">
-          <div className="d-flex flex-wrap">
+          <div className="d-flex flex-wrap" key={products._id}>
             {products?.map((p) => (
               <>
                 <div className="card m-2" style={{ width: "18rem" }}>
                   <img
-                    src={`http://localhost:3000/api/v1/product/product-photo/${p._id}`}
+                    src={`https://rfr-backend.onrender.com/api/v1/product/product-photo/${p._id}`}
                     className="card-img-top"
                     alt={p.name}
                   />
