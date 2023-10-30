@@ -18,7 +18,7 @@ const Register = () => {
     try {
       //const res=await axios.post(`${process.env.REACT_APP_API}/api/v1/auth/register`,{name,email,password,phone,address})
       const res = await axios.post(
-        `http://localhost:3000/api/v1/auth/register`,
+        `https://rfr-backend.onrender.com/api/v1/auth/register`,
         { name, email, password, phone, address, answer }
       );
       if (res && res.data.success) {
