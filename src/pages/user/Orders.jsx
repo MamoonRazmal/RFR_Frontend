@@ -10,7 +10,7 @@ const Orders = () => {
   const getOders = async () => {
     try {
       const { data } = await axios.get(
-        "http://localhost:3000/api/v1/auth/orders"
+        "https://rfr-backend.onrender.com/api/v1/auth/orders"
       );
       setOrders(data);
     } catch (error) {
@@ -60,7 +60,7 @@ const Orders = () => {
                       <div className="row mb-2 p-3 card flex-row" key={f._id}>
                         <div className="col-md-4">
                           <img
-                            src={`http://localhost:3000/api/v1/product/product-photo/${f._id}`}
+                            src={`https://rfr-backend.onrender.com/api/v1/product/product-photo/${f._id}`}
                             className="card-img-top"
                             alt={f.name}
                             width="100px"
