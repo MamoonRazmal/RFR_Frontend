@@ -117,7 +117,7 @@ const Home = () => {
     setChecked(all);
   };
   return (
-    <Layout title={"All Products=Besr offers"}>
+    <Layout title={"All Products=Best offers"}>
       {loading ? (
         <div className="loader">
           <Hourglass
@@ -134,7 +134,7 @@ const Home = () => {
       ) : (
         <div className="row mt-3">
           <div className="col-md-2">
-            <h4 className="text-center"> Filer By Category</h4>
+            <h4 className="text-center"> Filter By Categories</h4>
             <div className="d-flex flex-column">
               {categories?.map((c) => (
                 <Checkbox
@@ -145,7 +145,7 @@ const Home = () => {
                 </Checkbox>
               ))}
             </div>
-            <h4 className="text-center"> Filer By Price</h4>
+            <h4 className="text-center"> Filter By Price</h4>
             <div className="d-flex flex-column">
               <Radio.Group onChange={(e) => setRadio(e.target.value)}>
                 {Prices?.map((k) => (
@@ -161,7 +161,7 @@ const Home = () => {
                 className="btn btn-danger"
                 onClick={() => window.location.reload()}
               >
-                Rest Filter
+                Reset Filter
               </button>
             </div>
           </div>

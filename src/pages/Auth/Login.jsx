@@ -10,26 +10,27 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [auth, setAuth] = useAuth();
+  const navigate = new useNavigate();
   const location = useLocation();
 
-  const navigate = new useNavigate();
   const handlesubmit = async (e) => {
     e.preventDefault();
     try {
       //const res=await axios.post(`${process.env.REACT_APP_API}/api/v1/auth/register`,{name,email,password,phone,address})
       const res = await axios.post(
-        `https://rfr-backend.onrender.com/api/v1/auth/login`,
+        " https://rfr-backend.onrender.com/api/v1/auth/login",
         { email, password }
       );
-      if (res.data.message) {
-        toast.success(res.data.message);
+      console.log("value of resssssssss,", res.data);
+      if (res && res.data.sucess) {
+        console.log("value of res and res.data", res);
+        // toast.success("res && res.data.message");
         setAuth({ ...auth, user: res.data.user, token: res.data.token });
         localStorage.setItem("auth", JSON.stringify(res.data));
-        console.log(res.data.success);
+        // console.log(res.data.success);
         navigate(location.state || "/");
       } else {
         toast.error(res.data.message);
-        console.log(res.data.message);
       }
     } catch (error) {
       console.log(error);
