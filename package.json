@@ -13,6 +13,8 @@
   "dependencies": {
     "antd": "^5.10.2",
     "axios": "^1.5.1",
+    "braintree-web-drop-in-react": "^1.2.1",
+    "braintree-web-react": "^0.7.0",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "react": "^18.2.0",
