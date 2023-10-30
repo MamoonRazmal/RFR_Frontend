@@ -119,15 +119,18 @@ const Home = () => {
   return (
     <Layout title={"All Products=Besr offers"}>
       {loading ? (
-        <Hourglass
-          visible={true}
-          height="80"
-          width="80"
-          ariaLabel="hourglass-loading"
-          wrapperStyle={{}}
-          wrapperClass=""
-          colors={["#306cce", "#72a1ed"]}
-        />
+        <div className="loader">
+          <Hourglass
+            visible={true}
+            position="center"
+            height="80"
+            width="80"
+            ariaLabel="hourglass-loading"
+            wrapperStyle={{}}
+            wrapperClass=""
+            colors={["#306cce", "#72a1ed"]}
+          />
+        </div>
       ) : (
         <div className="row mt-3">
           <div className="col-md-2">
