@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Layout from "../../components/layout/Layout";
 import UserMenu from "../../components/layout/UserMenu";
 import axios from "axios";
+import moment from "moment";
 import { useAuth } from "../../context/Buth";
 //import Orders from "./Orders";
 const Orders = () => {
@@ -48,7 +49,7 @@ const Orders = () => {
                         <td>{i + 1}</td>
                         <td>{o?.status}</td>
                         <td>{o?.buyer?.name}</td>
-                        <td>{o?.CreatedAt}</td>
+                        <td>{moment(o?.createAt).fromNow()}</td>
                         <td>{o?.payment.success ? "Success" : "Failed"}</td>
                         <td>{o?.products?.length}</td>
                       </tr>
