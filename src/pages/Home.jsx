@@ -8,6 +8,7 @@ import { Checkbox, Radio } from "antd";
 import { Prices } from "../components/Prices";
 import { useCart } from "../context/Cart";
 import "../styles/Homepage.css";
+import diamond from "../assets/mainherosection.webp";
 import { Hourglass } from "react-loader-spinner";
 
 const Home = () => {
@@ -133,6 +134,9 @@ const Home = () => {
         </div>
       ) : (
         <div className="row mt-3">
+          <div>
+            <img src={diamond} alt="" width="100%" />
+          </div>
           <div className="col-md-2">
             <h4 className="text-center"> Filter By Categories</h4>
             <div className="d-flex flex-column">

@@ -94,11 +94,13 @@ const UpdateProduct = () => {
 
   const handleDelete = async () => {
     try {
-      let answer = window.prompt("Are you sure want to delete this Product?");
-      if (!answer) return;
+      // let answer = window.prompt("Are you sure want to delete this Product?");
+      // if (!answer) return;
+      console.log("value of if id dsdasd", id);
       const { data } = await axios.delete(
         `https://rfr-backend.onrender.com/api/v1/product/delete-product/${id}`
       );
+      console.log("delete heppended here", data);
       toast.success("product Deleted Successfuly");
       navigate("/dashboard/admin/products");
     } catch (error) {
@@ -238,7 +240,6 @@ const UpdateProduct = () => {
             </div>
           </div>
         </div>
-        /
       </div>
     </Layout>
   );
