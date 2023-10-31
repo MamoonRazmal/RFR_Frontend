@@ -7,6 +7,9 @@ import toast from "react-hot-toast";
 import { Checkbox, Radio } from "antd";
 import { Prices } from "../components/Prices";
 import { useCart } from "../context/Cart";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
+import Slides from "../components/Slides";
 
 import "../styles/Homepage.css";
 import diamond from "../assets/mainherosection.webp";
@@ -31,9 +34,10 @@ const Home = () => {
       const { data } = await axios.get(
         "https://rfr-backend.onrender.com/api/v1/category/get-category"
       );
-
+      console.log("this information is in categoriess", data);
       if (data?.success) {
         console.log(data?.category);
+        console.log("category name", data.category[0].name);
         setCategories(data?.category);
       }
     } catch (error) {
@@ -120,6 +124,7 @@ const Home = () => {
     }
     setChecked(all);
   };
+
   return (
     <Layout title={"All Products=Best offers"}>
       {loading ? (
@@ -137,8 +142,9 @@ const Home = () => {
         </div>
       ) : (
         <div className="row mt-3">
+          <div></div>
           <div>
-            <img src={diamond} alt="" width="100%" />
+            <Slides></Slides>
           </div>
           <div className="col-md-2">
             <h4 className="text-center"> Filter By Categories</h4>
