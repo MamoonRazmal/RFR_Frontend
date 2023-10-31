@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 import { Checkbox, Radio } from "antd";
 import { Prices } from "../components/Prices";
 import { useCart } from "../context/Cart";
+
 import "../styles/Homepage.css";
 import diamond from "../assets/mainherosection.webp";
 import { Hourglass } from "react-loader-spinner";
@@ -99,9 +100,11 @@ const Home = () => {
     }
   };
   useEffect(() => {
-    if (!checked.length || !radio.length) getallCategory();
-
-    getAllProduct();
+    getallCategory();
+    getTotal();
+  }, []);
+  useEffect(() => {
+    if (!checked.length || !radio.length) getAllProduct();
   }, [checked.length, radio.length]);
 
   useEffect(() => {
