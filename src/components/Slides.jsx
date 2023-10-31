@@ -20,13 +20,15 @@ const Slides = () => {
   return (
     <Splide options={{ rewind: true }} aria-label="React Splide Example">
       <SplideSlide>
-        <NavLink to={"/product/ALLURE-HOMME"}>
+        <NavLink to={"/product/BLEU-DE-CHANEL"}>
           {" "}
           <img src={diamond} alt="Image 1" />
         </NavLink>
       </SplideSlide>
       <SplideSlide>
-        <img src={mainbg} alt="Image 2" />
+        <NavLink to={"/product/ALLURE-HOMME"}>
+          <img src={mainbg} alt="Image 2" />
+        </NavLink>
       </SplideSlide>
       <SplideSlide>
         <img src={bg3} alt="Image 2" />
