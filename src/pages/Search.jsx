@@ -1,8 +1,10 @@
 import React from "react";
 import Layout from "../components/layout/Layout";
+import { useCart } from "../context/Cart";
 import { useSearch } from "../context/Search";
 const Search = () => {
   const [values, setValue] = useSearch();
+  const [cart, setCart] = useCart();
   return (
     <Layout title={"search results"}>
       <div className="container">
@@ -32,7 +34,17 @@ const Search = () => {
                     <button className="btn btn-primary ms-1">
                       More Details
                     </button>
-                    <button className="btn btn-secondory ms-1">
+                    <button
+                      className="btn btn-secondory ms-1"
+                      onClick={() => {
+                        setCart([...cart, p]);
+                        localStorage.setItem(
+                          "cart",
+                          JSON.stringify([...cart, p])
+                        );
+                        toast.success("Item Added to cart");
+                      }}
+                    >
                       Add To Cart
                     </button>
                   </div>
