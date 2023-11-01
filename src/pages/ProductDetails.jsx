@@ -1,8 +1,15 @@
 import React, { useState, useEffect } from "react";
 import Layout from "../components/layout/Layout";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
+import "../styles/ProductDetailsStyles.css";
+import { useCart } from "../context/Cart";
+import toast from "react-hot-toast";
 const ProductDetails = () => {
+  const [cart, setCart] = useCart();
+  const navigate = useNavigate();
   const params = useParams();
   const [product, setProduct] = useState({});
   const [category, setCategory] = useState({});
@@ -43,7 +50,8 @@ const ProductDetails = () => {
 
   return (
     <Layout>
-      <h1>Product Details</h1>
+      {/* <h1 className="similar-products">Product Details</h1> */}
+      <div className="row container product-details"></div>
       <div className="row container mt-2">
         <div className="col-md-6 ">
           <img
@@ -57,23 +65,60 @@ const ProductDetails = () => {
         <div className="col-md-6 ">
           <h1 className="text-center">Product Details</h1>
 
-          <h6>Name:{product.name}</h6>
-          <h6>Description:{product.description}</h6>
+          <h6>{product.name}</h6>
+          <hr />
+          {/* <h6>Description:{product.description}</h6> */}
           {/* {JSON.stringify(product, null, 4)} */}
           {/* <h6>Category:{category.name}</h6> */}
 
-          <h6>Price:{product.price}</h6>
-          <button className="btn btn-secondory ms-1">Add To Cart</button>
+          <h6>{product.price}€</h6>
+          <hr />
+          <button
+            className="btn btn-success ms-1"
+            onClick={() => {
+              setCart([...cart, product]);
+              localStorage.setItem("cart", JSON.stringify([...cart, p]));
+              toast.success("Item Added to cart");
+            }}
+          >
+            Add To Cart
+          </button>
         </div>
       </div>
-      <div className="row container">
+      <div className="row container border-none" style={{ padding: "10px" }}>
         <hr />
-        <h6>similar product</h6>
+
+        <div className="mb-3 border-none" style={{ padding: "10px" }}>
+          <li
+            className="nav-item dropdown border-none m-8  "
+            aria-expanded="false"
+          >
+            <Link
+              className="nav-link dropdown-toggle"
+              to={"/categories"}
+              data-bs-toggle="dropdown"
+            >
+              Description
+            </Link>
+            <ul
+              className="dropdown-menu help mb-3  "
+              style={{ padding: "10px" }}
+            >
+              <li
+                className="dropdown-item text-wrap mb-3"
+                style={{ margin: "2px 0" }}
+              >
+                {product.description}
+              </li>
+            </ul>
+            <hr />
+          </li>
+        </div>
+        <h6 className="mt-5">Similar products</h6>
         {relatedProducts.length < 1 && (
           <p className="text-center">No Similar Products found</p>
         )}
-
-        <div className="d-flex flex-wrap">
+        <div className=" d-flex flex-wrap">
           {relatedProducts?.map((p) => (
             <>
               <div className="card m-2" style={{ width: "18rem" }}>
@@ -89,7 +134,23 @@ const ProductDetails = () => {
                   </p>
                   <p className="card-text">€{p.price}</p>
 
-                  <button className="btn btn-secondory ms-1">
+                  <button
+                    className="btn btn-info ms-1"
+                    onClick={() => navigate(`/product/${p.slug}`)}
+                  >
+                    More Details
+                  </button>
+                  <button
+                    className="btn btn-secondory ms-1"
+                    onClick={() => {
+                      setCart([...cart, product]);
+                      localStorage.setItem(
+                        "cart",
+                        JSON.stringify([...cart, product])
+                      );
+                      toast.success("Item Added to cart");
+                    }}
+                  >
                     Add To Cart
                   </button>
                 </div>

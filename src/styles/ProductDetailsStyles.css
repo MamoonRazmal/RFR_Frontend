@@ -1,3 +1,10 @@
+.help {
+  text-decoration: none;
+}
+body {
+  font-family: "roboto", sans-serif;
+}
+
 .product-details {
   margin-top: 100px !important;
 }
@@ -10,11 +17,11 @@
 }
 
 .product-details-info h6 {
-  margin-bottom: 20px !important;
+  margin-bottom: 40px !important;
 }
 
 .similar-products .card {
-  background-color: rgba(128, 128, 128, 0.097);
+  background-color: rgba(178, 88, 88, 0.736);
   width: 18rem;
 }
 

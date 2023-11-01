@@ -2,7 +2,10 @@ import React from "react";
 import Layout from "../components/layout/Layout";
 import { useCart } from "../context/Cart";
 import { useSearch } from "../context/Search";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 const Search = () => {
+  const navigate = useNavigate();
   const [values, setValue] = useSearch();
   const [cart, setCart] = useCart();
   return (
@@ -31,7 +34,10 @@ const Search = () => {
                       {p.description.substring(0, 30)}....
                     </p>
                     <p className="card-text">€{p.price}</p>
-                    <button className="btn btn-primary ms-1">
+                    <button
+                      className="btn btn-primary ms-1"
+                      onClick={() => navigate(`/product/${p.slug}`)}
+                    >
                       More Details
                     </button>
                     <button
