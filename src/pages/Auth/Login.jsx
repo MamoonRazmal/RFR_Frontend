@@ -5,6 +5,7 @@ import axios from "axios";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../../context/Buth";
 import "../../styles/AuthStyles.css";
+import { RotatingLines } from "react-loader-spinner";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -12,10 +13,12 @@ const Login = () => {
   const [auth, setAuth] = useAuth();
   const navigate = new useNavigate();
   const location = useLocation();
+  const [loading, setLoading] = useState(false);
 
   const handlesubmit = async (e) => {
     e.preventDefault();
     try {
+      setLoading(true);
       //const res=await axios.post(`${process.env.REACT_APP_API}/api/v1/auth/register`,{name,email,password,phone,address})
       const res = await axios.post(
         " https://rfr-backend.onrender.com/api/v1/auth/login",
@@ -23,18 +26,20 @@ const Login = () => {
       );
       console.log("value of resssssssss,", res.data);
       if (res && res.data.sucess) {
-        console.log("value of res and res.data", res);
         // toast.success("res && res.data.message");
         setAuth({ ...auth, user: res.data.user, token: res.data.token });
         localStorage.setItem("auth", JSON.stringify(res.data));
         // console.log(res.data.success);
         navigate(location.state || "/");
+        setLoading(false);
       } else {
         toast.error(res.data.message);
+        setLoading(false);
       }
     } catch (error) {
       console.log(error);
       toast.error("some thing went wrong");
+      setLoading(false);
     }
   };
   return (
@@ -79,7 +84,17 @@ const Login = () => {
           </div>
           <div className="mb-3">
             <button type="submit" className="btn btn-primary">
-              Submit
+              {loading ? (
+                <RotatingLines
+                  strokeColor="grey"
+                  strokeWidth="5"
+                  animationDuration="0.75"
+                  width="30"
+                  visible={true}
+                />
+              ) : (
+                "Login"
+              )}
             </button>
           </div>
         </form>

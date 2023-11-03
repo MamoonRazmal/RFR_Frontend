@@ -4,6 +4,8 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
+import Accordion from "react-bootstrap/Accordion";
+import Button from "react-bootstrap/Button";
 import "../styles/ProductDetailsStyles.css";
 import { useCart } from "../context/Cart";
 import toast from "react-hot-toast";
@@ -47,7 +49,7 @@ const ProductDetails = () => {
       console.log(error);
     }
   };
-
+  console.log("value dddd ofproduct._id", product._id);
   return (
     <Layout>
       {/* <h1 className="similar-products">Product Details</h1> */}
@@ -66,15 +68,22 @@ const ProductDetails = () => {
           <h1 className="text-center">Product Details</h1>
 
           <h6>{product.name}</h6>
-          <hr />
-          {/* <h6>Description:{product.description}</h6> */}
-          {/* {JSON.stringify(product, null, 4)} */}
-          {/* <h6>Category:{category.name}</h6> */}
+          <hr className="border border-primary border-3 opacity-75" />
 
           <h6>{product.price}€</h6>
           <hr />
+          <Button
+            variant="outline-dark"
+            onClick={() => {
+              setCart([...cart, product]);
+              localStorage.setItem("cart", JSON.stringify([...cart, p]));
+              toast.success("Item Added to cart");
+            }}
+          >
+            Add To Cart
+          </Button>
           <button
-            className="btn btn-success ms-1"
+            className="btn btn-primary ms-1"
             onClick={() => {
               setCart([...cart, product]);
               localStorage.setItem("cart", JSON.stringify([...cart, p]));
@@ -85,35 +94,17 @@ const ProductDetails = () => {
           </button>
         </div>
       </div>
-      <div className="row container border-none" style={{ padding: "10px" }}>
+      <div className="row container">
         <hr />
-
-        <div className="mb-3 border-none" style={{ padding: "10px" }}>
-          <li
-            className="nav-item dropdown border-none m-8  "
-            aria-expanded="false"
-          >
-            <Link
-              className="nav-link dropdown-toggle"
-              to={"/categories"}
-              data-bs-toggle="dropdown"
-            >
-              Description
-            </Link>
-            <ul
-              className="dropdown-menu help mb-3  "
-              style={{ padding: "10px" }}
-            >
-              <li
-                className="dropdown-item text-wrap mb-3"
-                style={{ margin: "2px 0" }}
-              >
-                {product.description}
-              </li>
-            </ul>
-            <hr />
-          </li>
+        <div>
+          <Accordion defaultActiveKey="0">
+            <Accordion.Item eventKey="0">
+              <Accordion.Header>Description</Accordion.Header>
+              <Accordion.Body>{product.description}</Accordion.Body>
+            </Accordion.Item>
+          </Accordion>
         </div>
+
         <h6 className="mt-5">Similar products</h6>
         {relatedProducts.length < 1 && (
           <p className="text-center">No Similar Products found</p>

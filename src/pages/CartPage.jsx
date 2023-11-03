@@ -5,6 +5,7 @@ import { useAuth } from "../context/Buth";
 import { useNavigate } from "react-router-dom";
 import DropIn from "braintree-web-drop-in-react";
 import "../styles/CartStyles.css";
+import { RotatingLines } from "react-loader-spinner";
 
 import axios from "axios";
 import toast from "react-hot-toast";
@@ -13,6 +14,7 @@ const CartPage = () => {
   const [instant, setInstant] = useState("");
   const [auth, setAuth] = useAuth();
   const [loading, setLoading] = useState(false);
+  const [chkclick, setChkclick] = useState(false);
 
   const navigate = useNavigate();
   const [cart, setCart] = useCart();
@@ -23,9 +25,9 @@ const CartPage = () => {
       cart?.map((e) => {
         total = total + e.price;
       });
-      return total.toLocaleString("en-US", {
+      return total.toLocaleString("de-DE", {
         style: "currency",
-        currency: "USD",
+        currency: "EUR",
       });
     } catch (error) {
       console.log(error);
@@ -119,7 +121,7 @@ const CartPage = () => {
                   <div className="col-md-4">
                     <p>{p.name}</p>
                     <p>{p.description.substring(0, 30)}</p>
-                    <p>Price : {p.price}</p>
+                    <p>Price :€ {p.price}</p>
                   </div>
                   <div className="col-md-4 cart-remove-btn">
                     <button
@@ -191,9 +193,22 @@ const CartPage = () => {
                     <button
                       className="btn btn-primary"
                       onClick={handlePayment}
-                      disabled={loading || !instant || !auth?.user?.address}
+                      disabled={
+                        chkclick || loading || !instant || !auth?.user?.address
+                      }
                     >
-                      {loading ? "Processing ...." : "Make Payment"}
+                      {loading ? (
+                        <RotatingLines
+                          strokeColor="grey"
+                          strokeWidth="5"
+                          animationDuration="0.75"
+                          width="30"
+                          visible={true}
+                        />
+                      ) : (
+                        "Make Payment"
+                      )}
+                      {/* {loading ? "Processing ...." : "Make Payment"} */}
                     </button>
                   </>
                 )}
