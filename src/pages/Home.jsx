@@ -171,7 +171,6 @@ const Home = () => {
                 <div className="d-flex flex-column">
                   {categories?.map((c) => (
                     <>
-                      <Checkbox></Checkbox>
                       <Checkbox
                         key={c._id}
                         checked={checked.includes(c._id)}
