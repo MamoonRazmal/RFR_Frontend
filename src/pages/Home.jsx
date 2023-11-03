@@ -22,7 +22,7 @@ import { Hourglass } from "react-loader-spinner";
 const Home = () => {
   const navigate = useNavigate();
   const [cart, setCart] = useCart();
-  const [auth, setAuth] = useAuth();
+
   const [products, setproducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [checked, setChecked] = useState([]);
@@ -48,7 +48,10 @@ const Home = () => {
       console.log(error);
     }
   };
-
+  useEffect(() => {
+    getallCategory();
+    getTotal();
+  }, []);
   const getAllProduct = async () => {
     try {
       setLoading(true);
@@ -92,9 +95,6 @@ const Home = () => {
       setLoading(false);
     }
   };
-  useEffect(() => {
-    getTotal();
-  }, []);
 
   const filterProduct = async () => {
     try {
@@ -107,16 +107,17 @@ const Home = () => {
       console.log(error);
     }
   };
-  useEffect(() => {
-    getallCategory();
-    getTotal();
-  }, []);
+
   useEffect(() => {
     if (!checked.length || !radio.length) getAllProduct();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [checked.length, radio.length]);
 
   useEffect(() => {
-    if (checked.length || radio.length) filterProduct();
+    if (checked.length || radio.length) {
+      filterProduct();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [checked, radio]);
 
   const handleFilter = (value, id) => {
@@ -126,6 +127,7 @@ const Home = () => {
     } else {
       all = all.filter((c) => c !== id);
     }
+    console.log(`checked = ${value}`);
     setChecked(all);
   };
 
@@ -133,7 +135,7 @@ const Home = () => {
     <>
       <Snowfall
         // Changes the snowflake color
-        color="red"
+        color="green"
         // Applied to the canvas element
         // style={{ background: "#fff" }}
         style={{
@@ -142,7 +144,7 @@ const Home = () => {
           height: "100vh",
         }}
         // Controls the number of snowflakes that are created (default 150)
-        snowflakeCount={2000}
+        snowflakeCount={200}
       />
       <Layout title={"All Products=Best offers"}>
         {loading ? (
@@ -168,12 +170,17 @@ const Home = () => {
                 <h4 className="text-center"> Filter By Categories</h4>
                 <div className="d-flex flex-column">
                   {categories?.map((c) => (
-                    <Checkbox
-                      key={c._id}
-                      onChange={(e) => handleFilter(e.target.checked, c._id)}
-                    >
-                      {c.name}
-                    </Checkbox>
+                    <>
+                      <Checkbox></Checkbox>
+                      <Checkbox
+                        key={c._id}
+                        checked={checked.includes(c._id)}
+                        onChange={(e) => handleFilter(e.target.checked, c._id)}
+                        value={true}
+                      >
+                        {c.name}
+                      </Checkbox>
+                    </>
                   ))}
                 </div>
                 <h4 className="text-center"> Filter By Price</h4>
@@ -211,11 +218,20 @@ const Home = () => {
                           alt={p.name}
                         />
                         <div className="card-body">
-                          <h5 className="card-title">{p.name}</h5>
+                          <div className="card-name-price">
+                            <h5 className="card-title">{p.name}</h5>
+                            <h5 className="card-title card-price">
+                              {p.price.toLocaleString("en-US", {
+                                style: "currency",
+                                currency: "USD",
+                              })}
+                            </h5>
+                          </div>
+
                           <p className="card-text">
                             {p.description.substring(0, 30)}....
                           </p>
-                          <p className="card-text">€{p.price}</p>
+                          {/* <p className="card-text">€{p.price}</p> */}
                           <button
                             className="btn btn-info ms-1"
                             onClick={() => navigate(`/product/${p.slug}`)}
