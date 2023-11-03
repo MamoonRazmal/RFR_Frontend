@@ -220,9 +220,9 @@ const Home = () => {
                           <div className="card-name-price">
                             <h5 className="card-title">{p.name}</h5>
                             <h5 className="card-title card-price">
-                              {p.price.toLocaleString("en-US", {
+                              {p.price.toLocaleString("de-DE", {
                                 style: "currency",
-                                currency: "USD",
+                                currency: "EUR",
                               })}
                             </h5>
                           </div>
