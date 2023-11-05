@@ -4,6 +4,10 @@
 body {
   font-family: "roboto", sans-serif;
 }
+.no-border {
+  border: 0;
+  box-shadow: none;
+}
 
 .product-details {
   margin-top: 100px !important;

@@ -30,6 +30,8 @@ const Home = () => {
   const [total, setTotal] = useState(0);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
+  const [warning, setWarning] = useState("All Products");
+  const [filtercount, setFilterCount] = useState(0);
 
   //get
 
@@ -73,6 +75,7 @@ const Home = () => {
         "https://rfr-backend.onrender.com/api/v1/product/product-count"
       );
       setTotal(data?.total);
+      console.log("set total", total);
     } catch (error) {
       console.log(error);
     }
@@ -102,6 +105,11 @@ const Home = () => {
         "https://rfr-backend.onrender.com/api/v1/product/product-filter",
         { checked, radio }
       );
+      // console.log("value of data and product,", data?.products);
+      setFilterCount(data?.products.length);
+      if (data?.products.length === 0) setWarning("No Product found");
+      else setWarning("Product Found");
+
       setproducts(data?.products);
     } catch (error) {
       console.log(error);
@@ -130,7 +138,7 @@ const Home = () => {
     console.log(`checked = ${value}`);
     setChecked(all);
   };
-
+  console.log("value of filter count", filtercount);
   return (
     <>
       <Snowfall
@@ -148,17 +156,19 @@ const Home = () => {
       />
       <Layout title={"All Products=Best offers"}>
         {loading ? (
-          <div className="loader">
-            <Hourglass
-              visible={true}
-              position="center"
-              height="80"
-              width="80"
-              ariaLabel="hourglass-loading"
-              wrapperStyle={{}}
-              wrapperClass=""
-              colors={["#306cce", "#72a1ed"]}
-            />
+          <div className="loader-container">
+            <div className="spinner">
+              <Hourglass
+                visible={true}
+                position="center"
+                height="80"
+                width="80"
+                ariaLabel="hourglass-loading"
+                wrapperStyle={{}}
+                wrapperClass=""
+                colors={["#306cce", "#72a1ed"]}
+              />
+            </div>
           </div>
         ) : (
           <>
@@ -204,9 +214,9 @@ const Home = () => {
               </div>
 
               <div className="col-md-9">
-                {JSON.stringify(radio, null, 4)}
-
-                <h6 className="text-center">All Products</h6>
+                <h6 className="text-center">
+                  {warning} {filtercount}
+                </h6>
                 <div className="d-flex flex-wrap">
                   {products?.map((p) => (
                     <>
