@@ -1,5 +1,5 @@
 import React from "react";
-import Layout from "./../components/Layout/Layout";
+import Layout from "./../components/layout/Layout";
 import policy from "../assets/policy.jpeg";
 
 const Policy = () => {
