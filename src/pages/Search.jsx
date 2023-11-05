@@ -4,10 +4,12 @@ import { useCart } from "../context/Cart";
 import { useSearch } from "../context/Search";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { RotatingLines } from "react-loader-spinner";
 const Search = () => {
   const navigate = useNavigate();
   const [values, setValue] = useSearch();
   const [cart, setCart] = useCart();
+  // const [loading, setLoading] = useState(false);
   return (
     <Layout title={"search results"}>
       <div className="container">
@@ -16,7 +18,8 @@ const Search = () => {
           <h6>
             {values?.results.length < 1
               ? "No product found"
-              : `Found ${values?.results.length}`}
+              : `Found ${values?.results.length} `}
+            {values?.results.length === 1 ? "Product" : "Products"}
           </h6>
 
           <div className="d-flex flex-wrap mt-4">
