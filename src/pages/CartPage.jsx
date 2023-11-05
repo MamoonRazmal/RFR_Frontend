@@ -65,8 +65,9 @@ const CartPage = () => {
   ///handle payment
 
   const handlePayment = async () => {
+    console.log(" this is the test button pressed");
     try {
-      setLoading(true);
+      // setLoading(true);
       const { nonce } = await instant.requestPaymentMethod();
       const { data } = await axios.post(
         "https://rfr-backend.onrender.com/api/v1/product/braintree/payment",
@@ -75,6 +76,7 @@ const CartPage = () => {
           cart,
         }
       );
+      console.log("value of data in the cart", cart);
       setLoading(false);
       localStorage.removeItem("cart");
       setCart([]);
@@ -82,6 +84,7 @@ const CartPage = () => {
       toast.success("Payment completed successfully");
       setLoading(false);
     } catch (error) {
+      setLoading(false);
       console.log(error);
     }
   };
@@ -193,9 +196,7 @@ const CartPage = () => {
                     <button
                       className="btn btn-primary"
                       onClick={handlePayment}
-                      disabled={
-                        chkclick || loading || !instant || !auth?.user?.address
-                      }
+                      disabled={loading || !instant || !auth?.user?.address}
                     >
                       {loading ? (
                         <RotatingLines
