@@ -93,6 +93,7 @@ const Home = () => {
       );
       setLoading(false);
       setproducts([...products, ...data?.products]);
+      setFilterCount(filtercount + data.products.length);
     } catch (error) {
       console.log(error);
       setLoading(false);
@@ -108,7 +109,7 @@ const Home = () => {
       // console.log("value of data and product,", data?.products);
       setFilterCount(data?.products.length);
       if (data?.products.length === 0) setWarning("No Product found");
-      else setWarning("Product Found");
+      else setWarning("Products Found");
 
       setproducts(data?.products);
     } catch (error) {
@@ -118,6 +119,7 @@ const Home = () => {
 
   useEffect(() => {
     if (!checked.length || !radio.length) getAllProduct();
+    setFilterCount(0);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [checked.length, radio.length]);
 
@@ -149,10 +151,10 @@ const Home = () => {
         style={{
           position: "fixed",
           width: "100vw",
-          height: "100vh",
+          height: "40vh",
         }}
         // Controls the number of snowflakes that are created (default 150)
-        snowflakeCount={200}
+        snowflakeCount={100}
       />
       <Layout title={"All Products=Best offers"}>
         {loading ? (
@@ -215,7 +217,7 @@ const Home = () => {
 
               <div className="col-md-9">
                 <h6 className="text-center">
-                  {warning} {filtercount}
+                  {filtercount === 0 ? warning : warning + " " + filtercount}
                 </h6>
                 <div className="d-flex flex-wrap">
                   {products?.map((p) => (
