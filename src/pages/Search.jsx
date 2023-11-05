@@ -18,8 +18,9 @@ const Search = () => {
           <h6>
             {values?.results.length < 1
               ? "No product found"
-              : `Found ${values?.results.length} `}
-            {values?.results.length === 1 ? "Product" : "Products"}
+              : `Found ${values?.results.length} ${
+                  values?.results.length === 1 ? "product" : "products"
+                }`}
           </h6>
 
           <div className="d-flex flex-wrap mt-4">
