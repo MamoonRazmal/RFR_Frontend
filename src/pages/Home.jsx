@@ -140,19 +140,6 @@ const Home = () => {
 
   return (
     <>
-      <Snowfall
-        // Changes the snowflake color
-        color="green"
-        // Applied to the canvas element
-        // style={{ background: "#fff" }}
-        style={{
-          position: "fixed",
-          width: "100vw",
-          height: "40vh",
-        }}
-        // Controls the number of snowflakes that are created (default 150)
-        snowflakeCount={100}
-      />
       <Layout title={"All Products=Best offers"}>
         {loading ? (
           <div className="loader-container">
