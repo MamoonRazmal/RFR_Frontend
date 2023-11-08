@@ -12,7 +12,7 @@ import "react-multi-carousel/lib/styles.css";
 import Slides from "../components/Slides";
 import Toast from "react-bootstrap/Toast";
 import Canvas from "../components/layout/Canvas";
-
+import { AiOutlineReload } from "react-icons/ai";
 import Snowfall from "react-snowfall";
 
 import "../styles/Homepage.css";
@@ -254,13 +254,20 @@ const Home = () => {
                 <div className="m-2 p-3">
                   {products && products.length < total && (
                     <button
-                      className="btn btn-warning"
+                      className="btn loadmore"
                       onClick={(e) => {
                         e.preventDefault();
                         setPage(page + 1);
                       }}
                     >
-                      {loading ? "Loading..." : "Loadmore"}
+                      {loading ? (
+                        "Loading..."
+                      ) : (
+                        <>
+                          {" "}
+                          Loadmore <AiOutlineReload />
+                        </>
+                      )}
                     </button>
                   )}
                 </div>
