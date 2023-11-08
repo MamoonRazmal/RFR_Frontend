@@ -40,10 +40,8 @@ const Home = () => {
       const { data } = await axios.get(
         "https://rfr-backend.onrender.com/api/v1/category/get-category"
       );
-      console.log("this information is in categoriess", data);
+
       if (data?.success) {
-        console.log(data?.category);
-        console.log("category name", data.category[0].name);
         setCategories(data?.category);
       }
     } catch (error) {
@@ -75,7 +73,6 @@ const Home = () => {
         "https://rfr-backend.onrender.com/api/v1/product/product-count"
       );
       setTotal(data?.total);
-      console.log("set total", total);
     } catch (error) {
       console.log(error);
     }
@@ -137,10 +134,10 @@ const Home = () => {
     } else {
       all = all.filter((c) => c !== id);
     }
-    console.log(`checked = ${value}`);
+
     setChecked(all);
   };
-  console.log("value of filter count", filtercount);
+
   return (
     <>
       <Snowfall
