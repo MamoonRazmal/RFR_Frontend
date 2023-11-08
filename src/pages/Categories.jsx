@@ -8,8 +8,8 @@ const Categories = () => {
   const Categories = useCategory();
   return (
     <Layout title={"All categories"}>
-      <div className="container">
-        <div className="row">
+      <div className="container" style={{ marginTop: "100px" }}>
+        <div className="row container">
           {Categories.map((c) => (
             <div className="col-md-6 mt-5 mb-3 gx-3 gy-3" key={c._id}>
               <Link to={`/category/${c.slug}`} className="btn btn-primary">
