@@ -168,7 +168,7 @@ const Home = () => {
                 ariaLabel="hourglass-loading"
                 wrapperStyle={{}}
                 wrapperClass=""
-                colors={["#306cce", "#72a1ed"]}
+                colors={["#000000", "#C2B280"]}
               />
             </div>
           </div>
