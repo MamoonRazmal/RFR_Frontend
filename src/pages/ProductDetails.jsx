@@ -82,7 +82,7 @@ const ProductDetails = () => {
           >
             Add To Cart
           </Button>
-          <button
+          {/* <button
             className="btn btn-primary ms-1"
             onClick={() => {
               setCart([...cart, product]);
@@ -91,7 +91,7 @@ const ProductDetails = () => {
             }}
           >
             Add To Cart
-          </button>
+          </button> */}
         </div>
       </div>
       <div className="row container">

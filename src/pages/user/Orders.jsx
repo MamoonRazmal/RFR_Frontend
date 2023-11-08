@@ -23,13 +23,13 @@ const Orders = () => {
   }, [auth?.token]);
   return (
     <Layout title={"your Orders"}>
-      <div className="container-fluid p-3 m-3">
+      <div className="container-fluid p-3 m-3 dashboard">
         <div className="row">
           <div className="col-md-3">
             <UserMenu />
           </div>
           <div className="col-md-9">
-            <h1>All oders</h1>
+            <h1>All orders</h1>
             {orders.map((o, i) => {
               return (
                 <div className="border shadow" key={o._id}>
@@ -71,7 +71,7 @@ const Orders = () => {
                         <div className="col-md-8">
                           <p>{f.name}</p>
                           <p>{f.description.substring(0, 30)}</p>
-                          <p>Price {f.price}</p>
+                          <p>Price {f.price}€ </p>
                         </div>
                       </div>
                     ))}
