@@ -53,18 +53,18 @@ const ProductDetails = () => {
   return (
     <Layout>
       {/* <h1 className="similar-products">Product Details</h1> */}
-      <div className="row container product-details"></div>
-      <div className="row container mt-2">
+      <div className="row container product-details">
+        {/* <div className="row container mt-2"> */}
         <div className="col-md-6 ">
           <img
             src={`https://rfr-backend.onrender.com/api/v1/product/product-photo/${product._id}`}
             className="card-img-top"
             alt={product.name}
-            height="300"
+            height="400"
             width={"350px"}
           />
         </div>
-        <div className="col-md-6 ">
+        <div className="col-md-6 product-details-info">
           <h1 className="text-center">Product Details</h1>
 
           <h6>{product.name}</h6>
