@@ -50,7 +50,7 @@ const Products = () => {
         </div>
       ) : (
         <Layout>
-          <div className="row">
+          <div className="row dashboard">
             <div className="col-md-3">
               <AdminMenu />
             </div>
